@@ -18,13 +18,6 @@ const CountryCard: React.FC<CountryCardProps> = ({ country, setSelectedCountry, 
     <div onClick={handleCardClick}>
       <p>{country.flag}</p>
       <h2>{country.name.common}</h2>
-      {selectedCountry === country && (
-        <div>
-          {/* <p>Region: {country.region}</p>
-          <p>Capital: {country.capital.join(", ")}</p>
-          <p>Population: {country.population}</p> */}
-        </div>
-      )}
     </div>
   );
 };

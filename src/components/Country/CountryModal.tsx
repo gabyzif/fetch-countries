@@ -27,7 +27,6 @@ const CountryModal: React.FC<ModalProps> = ({ country, onClose }) => {
         <p>Region: {country.region}</p>
         <p>Capital: {country.capital.join(", ")}</p>
         <p>Population: {country.population}</p>
-        {/* Add more details as needed */}
       </div>
     </div>
   );
