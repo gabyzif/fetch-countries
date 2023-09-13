@@ -13,8 +13,21 @@ const CountryCardContainer = () => {
   const [notFound, setNotFound] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<CountryType | null>(null);
 
-  const columnCount = 5;
-  const columnWidth = (window.innerWidth - 300) / columnCount;
+  const [columnCount, setColumnCount] = useState(window.innerWidth <= 768 ? 1 : 5);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setColumnCount(window.innerWidth <= 768 ? 1 : 5);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const columnWidth = window.innerWidth > 1200 ? (window.innerWidth - 300) / columnCount : window.innerWidth;
 
   useEffect(() => {
     async function fetchData() {
@@ -81,8 +94,8 @@ const CountryCardContainer = () => {
         height={1500}
         rowCount={rowCount}
         rowHeight={() => rowHeight}
-        style={{ margin: "0 auto" }}
-        width={window.innerWidth - 300}
+        style={{ margin: "auto" }}
+        width={window.innerWidth > 1200 ? window.innerWidth - 300 : window.innerWidth}
       >
         {Cell}
       </Grid>
